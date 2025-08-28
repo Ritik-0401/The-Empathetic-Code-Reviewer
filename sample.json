@@ -1,0 +1,14 @@
+{
+  "code_snippet": "def process_user_data(records):\n    output_list=[]\n    for x in records:\n        if x['status']==True and x['profile']['is_complete']==True:\n            temp_dict={}\n            temp_dict['user_id']=x['user_id']\n            temp_dict['total_points']=0\n            for i in range(len(x['points'])):\n                if x['points'][i]>0:\n                    temp_dict['total_points']=temp_dict['total_points']+x['points'][i]\n            if temp_dict['total_points']>=50:\n                output_list.append(temp_dict)\n    return output_list\n\ndef create_summary(data):\n    result=''\n    counter=0\n    for u in data:\n        counter=counter + 1\n        result=result + 'User ID: '+str(u['user_id']) + ' Points: ' +str(u['total_points']) + '\n'\n    result=result+'Total Processed: '+str(counter)\n    return result\n\ndef validate_input(records):\n    valid=[]\n    for x in records:\n        if x['user_id'] != None:\n            valid.append(x)\n    return valid",
+  "review_comments": [
+    "Nested loops make this inefficient.",
+    "Variables 'x' and 'u' are too vague.",
+    "Boolean '== True' checks are redundant.",
+    "Temp dictionary creation is unnecessary.",
+    "String concatenation in loops is slow.",
+    "No error handling for missing keys.",
+    "Counter variable can be simplified.",
+    "Functions lack docstrings.",
+    "Hardcoded threshold of 50 is inflexible."
+  ]
+}
